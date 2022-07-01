@@ -1,17 +1,23 @@
 const mongoose = require('mongoose')
+const Role = require('../../enums/role.enum')
 const Schema = mongoose.Schema
 
 const User = new Schema({
 
-    firstName: {type:String},
-    lastName: {type:String},
+    username: {type:String},
+    fullname: { type: String },
+    birthday: { type: String },
     email: {type:String,unique:true},
     phone: {type:String},
     password: {type:String, required:true},
-    dateOfBirth: {type:Date},
-    avatarURL: {type:String},
-    createdAt: {type :Date,default:Date.now},
-    updatedAt: {type:Date}
-})
+    address: { type: String },
+    gender: { type: String },
+    avatarURL: { type: String },
+    role:{enum:['admin','user','broker']},
+},
+    {
+        timestamps: true
+    }
+)
 
 module.exports = mongoose.model('User', User)

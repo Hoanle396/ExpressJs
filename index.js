@@ -5,7 +5,7 @@ const port = 3000
 const routes = require('./routers')
 const morgan = require('morgan')
 const path = require('path')
-const db = require('./config/databases')
+const connectDB = require('./database/index')
 
 app.use(morgan('combined'))
 app.use(express.urlencoded({extended:true}))
@@ -19,7 +19,7 @@ app.set('views',path.join(__dirname, 'resources/views'))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use('/static', express.static(path.join(__dirname, 'public')))
 
-db.connect()
+connectDB()
 routes(app)
 
 
